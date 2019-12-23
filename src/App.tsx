@@ -1,8 +1,15 @@
 import React from "react";
-import LoginForm from "./auth/Login";
+import { Router } from "@reach/router";
+import Home from "./common/Home";
+import About from "./common/About";
 
 const App: React.FC = () => {
-  return <LoginForm />;
+  return (
+    <Router>
+      <Home path="/" />
+      <About path="/about" />
+    </Router>
+  );
 };
 
 export default App;
