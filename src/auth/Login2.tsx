@@ -32,22 +32,22 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Login = () => {
   const classes = useStyles();
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [helperText, setHelperText] = useState("");
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    if (username.trim() && password.trim()) {
+    if (email.trim() && password.trim()) {
       setIsButtonDisabled(false);
     } else {
       setIsButtonDisabled(true);
     }
-  }, [username, password]);
+  }, [email, password]);
 
   const handleLogin = () => {
-    if (username === "abc@email.com" && password === "password") {
+    if (email === "abc@email.com" && password === "password") {
       setError(false);
       setHelperText("Login Successfully");
     } else {
@@ -72,12 +72,12 @@ const Login = () => {
               <TextField
                 error={error}
                 fullWidth
-                id="username"
+                id="email"
                 type="email"
-                label="Username"
-                placeholder="Username"
+                label="email"
+                placeholder="Email"
                 margin="normal"
-                onChange={e => setUsername(e.target.value)}
+                onChange={e => setEmail(e.target.value)}
                 onKeyPress={e => handleKeyPress(e)}
               />
               <TextField
