@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Field, Form, FieldAttributes, useField } from "formik";
 import { TextField, Button } from "@material-ui/core";
-import yup from "yup";
+import * as yup from "yup";
 
 const MyTextField: React.FC<FieldAttributes<{}>> = ({
   placeholder,
