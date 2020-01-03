@@ -1,5 +1,5 @@
 import React from "react";
-import { Formik, Field, Form, FieldAttributes, useField } from "formik";
+import { Formik, Form, FieldAttributes, useField } from "formik";
 import { TextField, Button } from "@material-ui/core";
 import * as yup from "yup";
 
@@ -23,8 +23,15 @@ const MyTextField: React.FC<FieldAttributes<{}>> = ({
 const validationSchema = yup.object({
   email: yup
     .string()
+    .email()
+    .required(),
+  password: yup
+    .string()
     .required()
-    .min(6)
+    .matches(
+      /^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&]{8,}$/,
+      "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
+    )
 });
 
 const Login3: React.FC = () => {
@@ -38,16 +45,6 @@ const Login3: React.FC = () => {
           setSubmitting(false);
         }}
         validationSchema={validationSchema}
-        // validate={(values) => {
-        //   const errors: Record<string, string> = {};
-
-        //   if (values.email.length <= 2 ) {
-        //     console.log(values.email);
-        //     errors.email = 'must be at least 3 characters long'
-        //   }
-
-        //   return errors;
-        // }}
       >
         {({ values, errors, isSubmitting }) => (
           <Form>
@@ -55,11 +52,10 @@ const Login3: React.FC = () => {
               <MyTextField name="email" type="input" placeholder="Email" />
             </div>
             <div>
-              <Field
+              <MyTextField
                 name="password"
                 type="password"
-                placeholder="Password"
-                as={TextField}
+                placeholder="Constraseña"
               />
             </div>
             <div>
